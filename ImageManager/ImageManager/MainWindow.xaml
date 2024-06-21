@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="800" Width="1200">
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="500"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0"  Orientation="Horizontal">
+            <Label Content="Source Dircetory:" Margin="10" MinWidth="150"/>
+            <TextBox Text="{Binding SelectedDirectory, Mode=TwoWay}" Margin="10" IsReadOnly="True" MinWidth="500"/>
+            <Button Name="_SourceButton" Content="Browse" Click="OnSourceButton_Clicked" Height="30" Width="60"/>
+        </StackPanel>
 
+        <StackPanel Grid.Row="1"  Orientation="Horizontal">
+            <Label Content="Destination Dircetory:" Margin="10" MinWidth="150"/>
+            <TextBox Text="{Binding SelectedDirectory, Mode=TwoWay}" Margin="10" IsReadOnly="True" MinWidth="500"/>
+            <Button Name="_DestinationButton" Content="Browse" Click="OnDestinationButton_Clicked" Height="30" Width="60"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <Image Source="{Binding ImageSource}" Stretch="Uniform"/>
+        </StackPanel>
+        
     </Grid>
 </Window>
